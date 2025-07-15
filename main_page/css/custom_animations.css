@@ -1,0 +1,44 @@
+/* Real-time price update animations */
+.price-update {
+    animation: priceFlash 1s ease-in-out;
+}
+
+@keyframes priceFlash {
+    0% { background-color: #FF7901; color: white; }
+    100% { background-color: transparent; }
+}
+
+.change.positive {
+    color: #22C55E;
+    font-weight: 600;
+}
+
+.change.negative {
+    color: #EF4444;
+    font-weight: 600;
+}
+
+.symbol-row:hover {
+    background-color: #F8F9FA;
+    transition: background-color 0.2s ease;
+}
+
+.websocket-status {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;
+}
+
+.websocket-connected {
+    background-color: #22C55E;
+    color: white;
+}
+
+.websocket-disconnected {
+    background-color: #EF4444;
+    color: white;
+}

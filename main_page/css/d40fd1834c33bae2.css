@@ -1,0 +1,172 @@
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr {
+    grid-template-areas: "flag name name name name name name name name name" "time eps-lbl eps-lbl eps-lbl eps-lbl eps-lbl eps eps eps eps" "time rev-lbl rev-lbl rev-lbl rev-lbl rev-lbl rev rev rev rev";
+    grid-template-columns: repeat(10,1fr)
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-flag__PfgO_ {
+    grid-area: flag
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-name__sypFx {
+    grid-area: name
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-eps-label__vQ3St {
+    grid-area: eps-lbl
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-rev-label__rropK {
+    grid-area: rev-lbl
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-eps__jNuE0 {
+    grid-area: eps
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-rev__GpY4R {
+    grid-area: rev
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_table-row__XeATr .EarningsCalendarTable_table-cell-time__Q1LNq {
+    grid-area: time
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_name__9EpCD {
+    text-overflow: ellipsis;
+    max-width: 200px
+}
+
+[dir=ltr] .EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_name__9EpCD {
+    order: 1;
+    padding-right: 2px
+}
+
+[dir=ltr] .EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_symbol___HHnZ,[dir=rtl] .EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_name__9EpCD {
+    order: 2
+}
+
+[dir=rtl] .EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_symbol___HHnZ {
+    order: 1;
+    padding-left: 2px
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_time-cell__tXHjp {
+    text-align: center!important
+}
+
+.EarningsCalendarTable_wrapper__LsiJJ .EarningsCalendarTable_time-cell__tXHjp .EarningsCalendarTable_icon__g0mIl {
+    color: #bababa
+}
+
+.table-browser_table-browser-tabs__q5jip {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+}
+
+.table-browser_table-browser-tabs__q5jip::-webkit-scrollbar {
+    display: none
+}
+
+.dropdown_noSelect__rU_0Y {
+    -webkit-tap-highlight-color: transparent!important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none!important;
+    outline: none!important
+}
+
+.dynamic-assets-table-v2-dedicated-mobile-view_dynamic-table-wrapper__63_Ek .dynamic-assets-table-v2-dedicated-mobile-view_dynamic-table__LOsJZ .dynamic-assets-table-v2-dedicated-mobile-view_chg-pct__0NyMJ:before {
+    content: "("
+}
+
+.dynamic-assets-table-v2-dedicated-mobile-view_dynamic-table-wrapper__63_Ek .dynamic-assets-table-v2-dedicated-mobile-view_dynamic-table__LOsJZ .dynamic-assets-table-v2-dedicated-mobile-view_chg-pct__0NyMJ:after {
+    content: "%)"
+}
+
+.quotes-tables_container__t940k>:nth-child(2) {
+    width: 100%;
+    overflow: hidden
+}
+
+[dir=ltr] .quotes-tables_container__t940k table th:first-child {
+    border-right-width: 0!important
+}
+
+[dir=rtl] .quotes-tables_container__t940k table th:first-child {
+    border-left-width: 0!important
+}
+
+.quotes-tables_container__t940k table th:first-child svg {
+    display: none
+}
+
+[dir=ltr] .quotes-tables_container__t940k table td {
+    padding: .625rem 0 .6875rem .375rem!important
+}
+
+[dir=rtl] .quotes-tables_container__t940k table td {
+    padding: .625rem .375rem .6875rem 0!important
+}
+
+[dir=ltr] .quotes-tables_container__t940k table td:first-child a h4 span span {
+    margin: 0 .75rem 0 0!important
+}
+
+[dir=rtl] .quotes-tables_container__t940k table td:first-child a h4 span span {
+    margin: 0 0 0 .75rem!important
+}
+
+[dir=ltr] .quotes-tables_container__t940k table td:first-child {
+    border-right-width: 0!important
+}
+
+[dir=rtl] .quotes-tables_container__t940k table td:first-child {
+    border-left-width: 0!important
+}
+
+.quotes-tables_container__t940k table td:nth-child(2),.quotes-tables_container__t940k table th:nth-child(2) {
+    min-width: 0!important
+}
+
+.InvProStrategiesView_card-text__ut0gu {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+@media(min-width: 600px) {
+    .InvProStrategiesView_card-text__ut0gu {
+        display:block;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset
+    }
+}
+
+[dir=ltr] .InvProStrategiesView_btn-guest___KPUO {
+    background: linear-gradient(86deg,#fac761 8%,#f7681c 114.4%)
+}
+
+[dir=rtl] .InvProStrategiesView_btn-guest___KPUO {
+    background: linear-gradient(-86deg,#fac761 8%,#f7681c 114.4%)
+}
+
+.InvProStrategiesView_btn-guest___KPUO:hover {
+    background: #fdbf42
+}
+
+.InvProStrategiesView_btn-pro__BRAJc:hover {
+    border-color: #006bf6
+}
+
+.InvProStrategiesView_btn-pro__BRAJc:hover span {
+    color: #006bf6
+}
+
+.InvProStrategiesView_card-bottom-info__Xm3PK {
+    word-break: break-word
+}
+
+.InvProStrategiesView_text-color__x_ZZD {
+    color: var(--positive-strategies)
+}

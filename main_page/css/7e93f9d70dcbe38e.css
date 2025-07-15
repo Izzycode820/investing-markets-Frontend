@@ -1,0 +1,465 @@
+.signup_header__nrSk1 {
+    display: flex;
+    margin: 4px 0 24px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%
+}
+
+.signup_back__eeopQ,.signup_close__usH77 {
+    color: #999;
+    font-size: 16px;
+    padding: 3px
+}
+
+[dir=ltr] .signup_back__eeopQ {
+    margin-right: 14px
+}
+
+[dir=rtl] .signup_back__eeopQ {
+    margin-left: 14px
+}
+
+.signup_back__eeopQ svg {
+    transform: scaleX(-1)
+}
+
+.signup_title__n97yW {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700
+}
+
+.signup_card__TtSzk {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(35,47,52,.05);
+    border-radius: 3px
+}
+
+.signup_chooseMethodCard__Re66p {
+    padding: 40px
+}
+
+.signup_emailResent__Y9Dk5 {
+    background: #f2f2f2;
+    border-radius: 2px;
+    padding: 12px 16px;
+    margin-bottom: 24px
+}
+
+.signup_currentEmail__LTX4U {
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    overflow-wrap: break-word
+}
+
+.signup_changeOrResend__D7nA_ {
+    margin-bottom: 24px
+}
+
+.signup_changeOrResend__D7nA_ span {
+    color: #bababa;
+    margin: 0 14px
+}
+
+.signup_newEmail__Nink1 {
+    margin-top: 24px
+}
+
+.signup_row__eE1JL {
+    display: flex
+}
+
+.signup_button____SkB {
+    background: #1256a0;
+    box-shadow: 0 3px 6px 0 #1256a033;
+    border-radius: 3px;
+    height: 56px;
+    color: #fff;
+    width: 100%;
+    font-size: 14px
+}
+
+.signup_button____SkB.signup_icon__LG0SL {
+    padding: 0 24px;
+    justify-content: normal
+}
+
+.signup_button____SkB.signup_icon__LG0SL svg {
+    font-size: 20px
+}
+
+[dir=ltr] .signup_button____SkB.signup_icon__LG0SL svg {
+    margin-right: 16px
+}
+
+[dir=rtl] .signup_button____SkB.signup_icon__LG0SL svg {
+    margin-left: 16px
+}
+
+.signup_button____SkB.signup_google__0YUWS {
+    background: #4285f4;
+    margin-bottom: 24px;
+    margin-top: 32px
+}
+
+.signup_button____SkB.signup_facebook__7EjuA {
+    background: #1256a0;
+    margin-bottom: 24px
+}
+
+.signup_button____SkB.signup_apple__UmxPi {
+    background: #000;
+    margin-bottom: 8px
+}
+
+.signup_apple__UmxPi svg,.signup_facebook__7EjuA svg {
+    color: #1256a0;
+    background: #fff;
+    border-radius: 50%
+}
+
+.signup_button____SkB.signup_secondary__npUD9 {
+    background: #fff;
+    border: 1px solid #1256a0;
+    color: #1256a0;
+    margin-top: 8px
+}
+
+.signup_button____SkB.signup_cancel__xwgbL {
+    margin-top: 24px
+}
+
+.signup_separator__kTi8u {
+    background-color: #dfdede;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    height: 1px;
+    position: relative
+}
+
+.signup_separator__kTi8u span {
+    position: absolute;
+    top: 50%;
+    min-height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 0 26px;
+    color: #6d7681;
+    font-size: 12px
+}
+
+[dir=ltr] .signup_separator__kTi8u span {
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+
+[dir=rtl] .signup_separator__kTi8u span {
+    right: 50%;
+    transform: translate(50%,-50%)
+}
+
+.signup_footer__nVrpP {
+    text-align: center;
+    font-size: 12px;
+    line-height: 22px;
+    margin-top: 24px;
+    color: #333
+}
+
+.signup_button____SkB+.signup_separator__kTi8u {
+    margin-top: 24px
+}
+
+.signup_header__nrSk1+.signup_separator__kTi8u {
+    margin-bottom: 24px
+}
+
+.signup_separator__kTi8u+.signup_footer__nVrpP {
+    margin-top: 0
+}
+
+.signup_link__0v8io {
+    font-weight: 700;
+    color: #1256a0
+}
+
+.signup_errorMessage__Y04m_ {
+    color: #a60000;
+    font-size: 12px;
+    line-height: 14px;
+    min-height: 14px;
+    margin-top: 6px;
+    margin-bottom: 12px
+}
+
+.signup_agreement__LrdkO {
+    color: #9b9b9b;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 32px
+}
+
+.signup_agreement__LrdkO a {
+    text-decoration: underline
+}
+
+.signup_isStartScreen__W1o2A .signup_footer__nVrpP {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 48px
+}
+
+.social-auth-button_button__4UcrI {
+    border-radius: 3px;
+    height: 40px;
+    color: #fff;
+    width: 100%;
+    font-size: 14px;
+    letter-spacing: .2px;
+    font-family: Arial,sans-serif
+}
+
+.social-auth-button_button__4UcrI[hidden] {
+    display: none!important
+}
+
+.social-auth-button_icon__0fp5Q {
+    padding: 0 24px;
+    justify-content: normal
+}
+
+.social-auth-button_icon__0fp5Q svg {
+    box-sizing: border-box;
+    font-size: 20px;
+    flex: 0 0 auto
+}
+
+[dir=ltr] .social-auth-button_icon__0fp5Q svg {
+    margin: 2px 14px 2px 2px
+}
+
+[dir=rtl] .social-auth-button_icon__0fp5Q svg {
+    margin: 2px 2px 2px 14px
+}
+
+.social-auth-button_google__tsOf_ {
+    background: #4285f4;
+    margin-bottom: 24px;
+    margin-top: 32px;
+    box-shadow: 0 3px 6px rgba(66,133,244,.2)
+}
+
+.social-auth-button_apple___oQhx {
+    background: #000;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    box-shadow: 0 3px 6px rgba(66,133,244,.2)
+}
+
+.social-auth-button_apple___oQhx svg {
+    font-size: 26px
+}
+
+[dir=ltr] .social-auth-button_apple___oQhx svg {
+    margin: 2px 10px 2px 0
+}
+
+[dir=rtl] .social-auth-button_apple___oQhx svg {
+    margin: 2px 0 2px 10px
+}
+
+.social-auth-button_appleWrapper__6ZsVo div[tabindex="0"],.social-auth-button_googleWrapper__WV2Qb div[tabindex="0"] {
+    height: 56px
+}
+
+.social-auth-button_facebook__X37tc {
+    background: #1256a0;
+    margin-bottom: 8px;
+    box-shadow: 0 3px 6px rgba(18,86,160,.2)
+}
+
+.social-auth-button_google__tsOf_[hidden]+.social-auth-button_facebook__X37tc {
+    margin-top: 32px
+}
+
+.social-auth-button_facebook__X37tc svg {
+    color: #1256a0;
+    background: #fff;
+    border-radius: 50%
+}
+
+.social-auth-button_facebook__X37tc path {
+    transform: translateY(4px)
+}
+
+.social-auth-button_vk__K9_xy {
+    background: #07f;
+    box-shadow: 0 3px 6px rgba(18,86,160,.2)
+}
+
+.social-auth-button_email__emi7S {
+    background: #fff;
+    border: 1px solid #1256a0;
+    color: #1256a0;
+    margin-top: 8px
+}
+
+.social-auth-button_email__emi7S svg {
+    font-size: 24px
+}
+
+[dir=ltr] .social-auth-button_email__emi7S svg {
+    margin: 0 12px 0 0
+}
+
+[dir=rtl] .social-auth-button_email__emi7S svg {
+    margin: 0 0 0 12px
+}
+
+.signin_form__bBCIW {
+    background: transparent
+}
+
+.signin_separator__5WrtX {
+    background-color: #dfdede;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    height: 1px;
+    position: relative
+}
+
+.signin_button__XX4In {
+    margin-top: 8px;
+    margin-bottom: 16px
+}
+
+.signin_separator__5WrtX+.signin_button__XX4In,.signin_separator__5WrtX+.signin_button__XX4In[hidden]+.signin_button__XX4In {
+    margin-top: 0
+}
+
+.signin_secondaryBtn__Uiv2e {
+    background: #fff;
+    border: 1px solid #1256a0;
+    color: #1256a0;
+    margin-top: 24px
+}
+
+.signin_primaryBtn__54rGh,.signin_resetPassword__Niwba,.signin_secondaryBtn__Uiv2e {
+    box-shadow: 0 3px 6px 0 #1256a033;
+    border-radius: 3px;
+    height: 56px;
+    width: 100%;
+    font-size: 14px
+}
+
+.signin_primaryBtn__54rGh,.signin_resetPassword__Niwba {
+    background: #1256a0;
+    color: #fff
+}
+
+.signin_captcha__cwBt4,.signin_resetPassword__Niwba {
+    margin-top: 24px
+}
+
+.signin_forgotPassword__R_dqs {
+    text-align: end;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 100%
+}
+
+.signin_forgotPasswordTeaser__iNiW1 {
+    line-height: 20px
+}
+
+.signin_footer__oMpVC {
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: center
+}
+
+.signin_link__mQrMs {
+    font-weight: 700;
+    color: #1256a0
+}
+
+.signin_email__4Mcwr {
+    margin-top: 24px
+}
+
+.signin_errorMessage__uNQRb {
+    color: #a60000;
+    font-size: 12px;
+    line-height: 14px;
+    min-height: 14px;
+    margin-top: 6px;
+    margin-bottom: 12px
+}
+
+.signin_errorMessage__uNQRb.signin_apiError__wN3ml {
+    text-align: center;
+    margin: 0
+}
+
+.signin_errorMessage__uNQRb.signin_apiError__wN3ml:not(:empty) {
+    margin-bottom: 16px
+}
+
+.signin_errorMessage__uNQRb.signin_noHeight__vjT_d {
+    margin: 0;
+    min-height: 0
+}
+
+.signin_errorMessage__uNQRb.signin_noHeight__vjT_d:not(:empty) {
+    margin-top: 6px
+}
+
+.signin_greenCheckmark__g000k {
+    height: 92px;
+    display: flex;
+    justify-content: center
+}
+
+.signin_circleIcon__KmbrS {
+    margin-top: 16px;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #0ea600;
+    border-radius: 50%
+}
+
+.signin_checkmarkIcon__jevLs {
+    position: absolute;
+    transform: rotate(45deg);
+    height: var(--height);
+    width: var(--width);
+    border-bottom: var(--borderWidth) solid var(--borderColor);
+    border-right: var(--borderWidth) solid var(--borderColor);
+    --borderWidth: 2px;
+    --height: 27px;
+    --width: 14px;
+    --borderColor: #0ea600;
+    margin-top: 29px
+}
+
+.signin_resetTeaser__Wu9iz {
+    text-align: center;
+    font-weight: 700
+}
+
+.signin_resetInstruction__UWz91 {
+    margin-bottom: 24px;
+    text-align: center;
+    overflow-wrap: break-word
+}
