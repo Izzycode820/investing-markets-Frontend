@@ -65,8 +65,38 @@ class InvestingMarketsAPI {
         return this.makeRequest(`${this.endpoints.symbols}/${ticker}`);
     }
 
-    async searchSymbols(query) {
-        return this.makeRequest(`${this.endpoints.search}?q=${encodeURIComponent(query)}`);
+    async searchSymbols(query, assetClass = null) {
+        let url = `${this.endpoints.symbols}?search=${encodeURIComponent(query)}&limit=20`;
+        if (assetClass) {
+            url += `&asset_class=${assetClass}`;
+        }
+        return this.makeRequest(url);
+    }
+
+    // Enhanced search across multiple asset classes
+    async performAdvancedSearch(query) {
+        if (query.length < 2) return;
+        
+        try {
+            // Search across multiple asset classes
+            const [stocks, crypto, forex, commodities] = await Promise.all([
+                this.searchSymbols(query, 'equity'),
+                this.searchSymbols(query, 'crypto'),
+                this.searchSymbols(query, 'currency'),
+                this.searchSymbols(query, 'commodity')
+            ]);
+            
+            return {
+                stocks: stocks.slice(0, 5),
+                crypto: crypto.slice(0, 3),
+                forex: forex.slice(0, 3),
+                commodities: commodities.slice(0, 3)
+            };
+            
+        } catch (error) {
+            console.error('Advanced search failed:', error);
+            throw error;
+        }
     }
 
     async getNews(category = null, limit = 20) {
@@ -78,6 +108,35 @@ class InvestingMarketsAPI {
     async getBrokers(filters = {}) {
         const params = new URLSearchParams(filters).toString();
         return this.makeRequest(`${this.endpoints.brokers}?${params}`);
+    }
+
+    // New enhanced API methods
+    async getMarketStatus() {
+        return this.makeRequest('/api/market/status');
+    }
+
+    async getIntradayData(ticker, interval = '5min') {
+        return this.makeRequest(`/api/symbols/${ticker}/intraday?interval=${interval}`);
+    }
+
+    async getMarketScreener(filters = {}) {
+        const params = new URLSearchParams(filters).toString();
+        return this.makeRequest(`/api/market/screener?${params}`);
+    }
+
+    async createPriceAlert(symbolTicker, targetPrice, condition) {
+        return this.makeRequest('/api/alerts/create', {
+            method: 'POST',
+            body: JSON.stringify({
+                symbol_ticker: symbolTicker,
+                target_price: targetPrice,
+                condition: condition
+            })
+        });
+    }
+
+    async getCacheStats() {
+        return this.makeRequest('/api/cache/stats');
     }
 
     // Handle real-time updates
@@ -95,6 +154,18 @@ class InvestingMarketsAPI {
         }
     }
 
+    // Update market status
+    updateMarketStatus(statusData) {
+        console.log('📊 Market status update:', statusData);
+        // Add market status update logic here if needed
+    }
+
+    // Update news section
+    updateNewsSection(newsData) {
+        console.log('📰 News update:', newsData);
+        // Add news update logic here if needed
+    }
+
     // Update DOM elements with real-time data
     updatePriceDisplays(priceData) {
         for (const [symbol, data] of Object.entries(priceData)) {
@@ -106,21 +177,62 @@ class InvestingMarketsAPI {
     }
 
     updateSymbolElement(element, data) {
-        // Update price
-        const priceEl = element.querySelector('.price, [data-field="price"]');
+        // Price with animation
+        const priceEl = element.querySelector('[data-field="price"]');
         if (priceEl && data.current_price) {
-            priceEl.textContent = data.current_price.toFixed(2);
-            priceEl.classList.add('price-update');
-            setTimeout(() => priceEl.classList.remove('price-update'), 1000);
+            const oldPrice = parseFloat(priceEl.textContent);
+            const newPrice = data.current_price;
+            
+            priceEl.textContent = newPrice.toFixed(2);
+            
+            // Add price movement animation
+            if (newPrice > oldPrice) {
+                priceEl.classList.add('price-up');
+            } else if (newPrice < oldPrice) {
+                priceEl.classList.add('price-down');
+            }
+            
+            setTimeout(() => {
+                priceEl.classList.remove('price-up', 'price-down');
+            }, 1000);
+        }
+        
+        // Volume with abbreviation
+        const volumeEl = element.querySelector('[data-field="volume"]');
+        if (volumeEl && data.volume) {
+            volumeEl.textContent = this.abbreviateNumber(data.volume);
+        }
+        
+        // Market status indicator
+        const statusEl = element.querySelector('[data-field="status"]');
+        if (statusEl) {
+            statusEl.className = `status ${data.is_market_open ? 'open' : 'closed'}`;
+            statusEl.textContent = data.is_market_open ? 'LIVE' : 'CLOSED';
         }
 
-        // Update change
+        // Update change with enhanced styling
         const changeEl = element.querySelector('.change, [data-field="change"]');
         if (changeEl && data.change_percent !== null) {
             const isPositive = data.change_percent >= 0;
             changeEl.textContent = `${isPositive ? '+' : ''}${data.change_percent.toFixed(2)}%`;
             changeEl.className = `change ${isPositive ? 'positive' : 'negative'}`;
         }
+        
+        // Update change amount
+        const changeAmountEl = element.querySelector('[data-field="change_amount"]');
+        if (changeAmountEl && data.change !== undefined) {
+            const isPositive = data.change >= 0;
+            changeAmountEl.textContent = `${isPositive ? '+' : ''}${data.change.toFixed(2)}`;
+            changeAmountEl.className = `change-amount ${isPositive ? 'positive' : 'negative'}`;
+        }
+    }
+
+    // Add number abbreviation utility
+    abbreviateNumber(num) {
+        if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+        if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+        if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+        return num.toString();
     }
 
     // Connection status indicator

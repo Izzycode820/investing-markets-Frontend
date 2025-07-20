@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investing Markets - Test Integration</title>
+    <link rel="stylesheet" href="css/custom_animations.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .market-data-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .symbol-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+        .symbol-row:hover {
+            background-color: #f9f9f9;
+        }
+        .symbol-info {
+            font-weight: bold;
+            color: #333;
+        }
+        .price-info {
+            text-align: right;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .change.positive {
+            color: #22C55E;
+            font-weight: 600;
+        }
+        .change.negative {
+            color: #EF4444;
+            font-weight: 600;
+        }
+        .status.open {
+            color: #22C55E;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.closed {
+            color: #EF4444;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .search-container {
+            margin: 20px 0;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .connection-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Investing Markets - Real-time Test</h1>
+        
+        <!-- Connection Status -->
+        <div id="connection-status" class="connection-indicator">Connecting...</div>
+        
+        <!-- Search -->
+        <div class="search-container">
+            <input id="search-input" type="text" class="search-input" 
+                   placeholder="Search symbols (AAPL, MSFT, Bitcoin, Tesla...)">
+            <div id="search-results-container"></div>
+        </div>
+        
+        <!-- Major Indices -->
+        <div class="market-data-panel">
+            <h2>📈 Major Indices</h2>
+            
+            <div data-symbol="SPY" class="symbol-row">
+                <div class="symbol-info">
+                    <div>SPY</div>
+                    <div style="font-size: 12px; color: #666;">SPDR S&P 500 ETF</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">--</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666;">
+                        Vol: <span data-field="volume">--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-symbol="QQQ" class="symbol-row">
+                <div class="symbol-info">
+                    <div>QQQ</div>
+                    <div style="font-size: 12px; color: #666;">Invesco QQQ Trust</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">--</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666;">
+                        Vol: <span data-field="volume">--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-symbol="DIA" class="symbol-row">
+                <div class="symbol-info">
+                    <div>DIA</div>
+                    <div style="font-size: 12px; color: #666;">SPDR Dow Jones ETF</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">--</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666;">
+                        Vol: <span data-field="volume">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cryptocurrency -->
+        <div class="market-data-panel">
+            <h2>₿ Cryptocurrency</h2>
+            
+            <div data-symbol="BTCUSD" class="symbol-row">
+                <div class="symbol-info">
+                    <div>BTC/USD</div>
+                    <div style="font-size: 12px; color: #666;">Bitcoin</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">LIVE</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666;">
+                        Vol: <span data-field="volume">--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-symbol="ETHUSD" class="symbol-row">
+                <div class="symbol-info">
+                    <div>ETH/USD</div>
+                    <div style="font-size: 12px; color: #666;">Ethereum</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">LIVE</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666;">
+                        Vol: <span data-field="volume">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Forex -->
+        <div class="market-data-panel">
+            <h2>💱 Major Currencies</h2>
+            
+            <div data-symbol="EURUSD" class="symbol-row">
+                <div class="symbol-info">
+                    <div>EUR/USD</div>
+                    <div style="font-size: 12px; color: #666;">Euro Dollar</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-symbol="GBPUSD" class="symbol-row">
+                <div class="symbol-info">
+                    <div>GBP/USD</div>
+                    <div style="font-size: 12px; color: #666;">British Pound Dollar</div>
+                </div>
+                <div class="price-info">
+                    <div data-field="price" class="price">--</div>
+                    <div>
+                        <span data-field="change" class="change">--</span>
+                        <span data-field="status" class="status">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript Integration -->
+    <script src="pages/config.js"></script>
+    <script src="pages/api-client.js"></script>
+    <script src="pages/chart-manager.js"></script>
+    <script src="pages/main-app.js"></script>
+    
+    <script>
+        console.log('🚀 Test page loaded');
+        console.log('📡 API Config:', window.InvestingMarketsConfig);
+        
+        // Manual initialization if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 DOM loaded, API should be connecting...');
+            
+            // Check if API is working
+            setTimeout(() => {
+                if (window.API) {
+                    console.log('✅ API client loaded');
+                    console.log('🔌 WebSocket state:', window.API.websocket?.readyState);
+                } else {
+                    console.error('❌ API client not loaded');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

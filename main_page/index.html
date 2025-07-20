@@ -10062,11 +10062,7 @@
             </div>
         </div>
         
-<script src="pages/config.js"></script>
-    <script src="pages/api-client.js"></script>
-    <script src="pages/main-app.js"></script>
-
-    <!-- OUR NEW JAVASCRIPT INTEGRATION -->
+<!-- OUR JAVASCRIPT INTEGRATION -->
     
     <!-- Configuration MUST load first -->
     <script src="pages/config.js"></script>
@@ -10076,6 +10072,9 @@
     
     <!-- Main Application -->
     <script src="pages/main-app.js"></script>
+    
+    <!-- Market Data Integration (NEW) -->
+    <script src="pages/market-data-integration.js"></script>
     
     <!-- Live reload script (remove in production) -->
     <script>
@@ -10095,5 +10094,24 @@
     })();
     </script>
 
+
+    <!-- LIVE_RELOAD_SCRIPT -->
+    <script>
+    (function() {
+        let lastModified = Date.now();
+        setInterval(function() {
+            fetch('/livereload')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.reload) {
+                        console.log('🔄 Files changed, reloading...');
+                        window.location.reload();
+                    }
+                })
+                .catch(() => {}); // Ignore errors
+        }, 1000);
+    })();
+    </script>
+    
 </body>
 </html>
