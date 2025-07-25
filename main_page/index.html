@@ -68,6 +68,26 @@
             opacity: 0.6;
             pointer-events: none;
         }
+        
+        /* Skeleton loading animations */
+        .skeleton-loading {
+            animation: skeleton-pulse 1.5s ease-in-out infinite;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+        }
+        
+        @keyframes skeleton-pulse {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .skeleton-placeholder {
+            color: transparent;
+            border-radius: 4px;
+            min-height: 1em;
+            display: inline-block;
+            min-width: 40px;
+        }
     </style>
 
 </head>
@@ -10062,6 +10082,13 @@
             </div>
         </div>
         
+        <!-- DYNAMIC TABLES CONTAINERS -->
+        <div id="dynamic-tables-section" class="container mx-auto px-4 py-8">
+            <div id="world-indices-table" class="market-table-container mb-8"></div>
+            <div id="leading-stocks-table" class="market-table-container mb-8"></div>
+            <div id="cryptocurrencies-table" class="market-table-container mb-8"></div>
+        </div>
+        
 <!-- OUR JAVASCRIPT INTEGRATION -->
     
     <!-- Configuration MUST load first -->
@@ -10069,6 +10096,9 @@
     
     <!-- API Client -->
     <script src="pages/api-client.js"></script>
+    
+    <!-- Dynamic Table Generator (MUST load before market integration) -->
+    <script src="pages/dynamic-table-generator.js"></script>
     
     <!-- Main Application -->
     <script src="pages/main-app.js"></script>

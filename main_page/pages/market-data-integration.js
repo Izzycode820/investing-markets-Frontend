@@ -5,41 +5,91 @@
 
 class MarketDataIntegration {
     constructor() {
-        this.symbolMappings = {
-            // Map display names to our backend symbols
-            'Dow Jones': 'DIA',
-            'S&P 500': 'SPY', 
-            'S &P 500': 'SPY',
-            'Nasdaq': 'QQQ',
-            'Russell 2000': 'IWM',
-            'VIX': 'VIX',
-            'Bitcoin': 'BTCUSD',
-            'Ethereum': 'ETHUSD',
-            'XRP': 'XRPUSD',
-            'Tether': 'USDTUSD',
-            'BNB': 'BNBUSD',
-            'Polkadot': 'DOTUSD',
-            'Cardano': 'ADAUSD',
-            'Solana': 'SOLUSD',
-            'Dogecoin': 'DOGEUSD',
-            'Litecoin': 'LTCUSD',
-            'EUR/USD': 'EURUSD',
-            'GBP/USD': 'GBPUSD',
-            'USD/JPY': 'USDJPY'
-        };
-        
         this.priceElements = new Map();
         this.lastUpdated = new Date();
-        this.scanForElements();
+        this.useDataDrivenApproach = true; // New flag for data-driven tables
+        
+        // Wait for dynamic tables to be generated before scanning
+        this.initializeAfterTables();
+    }
+    
+    async initializeAfterTables() {
+        // Listen for table generation completion event
+        document.addEventListener('tablesGenerated', (event) => {
+            console.log('📡 Received tablesGenerated event:', event.detail);
+            console.log('✅ Tables are ready, starting element scanning...');
+            this.scanForElements();
+        });
+        
+        // Wait for dynamic table generator to finish (fallback method)
+        if (window.tableGenerator) {
+            console.log('⏳ Waiting for dynamic tables to be generated...');
+            // Wait longer and check for completion
+            let attempts = 0;
+            const maxAttempts = 10;
+            
+            const checkTablesReady = () => {
+                const dataSymbolElements = document.querySelectorAll('[data-symbol]');
+                console.log(`🔍 Attempt ${attempts + 1}: Found ${dataSymbolElements.length} data-symbol elements`);
+                
+                if (dataSymbolElements.length > 0 || attempts >= maxAttempts) {
+                    console.log('✅ Tables ready (fallback), starting element scanning...');
+                    this.scanForElements();
+                } else {
+                    attempts++;
+                    setTimeout(checkTablesReady, 1000);
+                }
+            };
+            
+            setTimeout(checkTablesReady, 5000); // Start checking after 5 seconds
+        } else {
+            // Fallback to old method if dynamic tables not available
+            console.log('📊 Using static table scanning (fallback mode)');
+            setTimeout(() => this.scanForElements(), 3000);
+        }
     }
     
     scanForElements() {
         console.log('🔍 Scanning for market data elements...');
         
+        if (this.useDataDrivenApproach) {
+            // New approach: Look for data-symbol attributes
+            this.scanDataDrivenElements();
+        } else {
+            // Fallback: Use old title-based approach
+            this.scanStaticElements();
+        }
+        
+        console.log(`📊 Found ${this.priceElements.size} market data elements`);
+        
+        // Debug: Show what symbols we found
+        const foundSymbols = Array.from(this.priceElements.keys());
+        console.log(`🎯 Tracking symbols:`, foundSymbols);
+    }
+    
+    scanDataDrivenElements() {
+        console.log('🎯 Using data-driven element scanning...');
+        
+        // Find all rows with data-symbol attributes
+        const symbolRows = document.querySelectorAll('[data-symbol]');
+        console.log(`📊 Found ${symbolRows.length} rows with data-symbol attributes`);
+        
+        symbolRows.forEach((row, index) => {
+            const symbol = row.getAttribute('data-symbol');
+            if (symbol) {
+                console.log(`📈 Found data-driven symbol: ${symbol}`);
+                this.processDataDrivenRow(row, symbol, index);
+            }
+        });
+    }
+    
+    scanStaticElements() {
+        console.log('📊 Using static element scanning (fallback)...');
+        
         // Try multiple selectors to find table rows
         const selectors = [
             'tr.datatable-v2_row__hkEus.dynamic-table-v2_row__ILVMx',
-            'tr.datatable-v2_row__hkEus',
+            'tr.datatable-v2_row__hkEus', 
             '[data-test="dynamic-table"] tr',
             'table tr'
         ];
@@ -59,17 +109,58 @@ class MarketDataIntegration {
         tableRows.forEach((row, index) => {
             this.processTableRow(row, index);
         });
-        
-        // Also scan for any existing price elements
-        this.scanForPriceElements();
-        
-        console.log(`📊 Found ${this.priceElements.size} market data elements`);
-        
-        // Debug: Show what symbols we found
-        const foundSymbols = Array.from(this.priceElements.keys());
-        console.log(`🎯 Tracking symbols:`, foundSymbols);
     }
     
+    processDataDrivenRow(row, symbol, index) {
+        console.log(`🔍 Processing data-driven row for ${symbol}`);
+        
+        // Find price elements using more reliable selectors for our generated tables
+        const priceElement = row.querySelector('.price-value');
+        const changeElement = row.querySelector('.change-value');
+        const changePercentElement = row.querySelector('.change-percent-value');
+        const volumeElement = row.querySelector('.volume-value');
+        const timeElement = row.querySelector('.dynamic-table-v2_timeWrapper__oOtpE');
+        
+        if (!priceElement) {
+            console.warn(`⚠️ No price element found for ${symbol}`);
+            return;
+        }
+        
+        // Store element references for this symbol
+        const elementData = {
+            priceElement,
+            changeElement,
+            changePercentElement,
+            volumeElement,
+            timeElement,
+            lastPrice: 0,
+            lastChange: 0,
+            lastChangePct: 0
+        };
+        
+        // Remove skeleton loading classes since we now have real elements to populate
+        [priceElement, changeElement, changePercentElement, volumeElement, timeElement].forEach(el => {
+            if (el) {
+                el.classList.remove('skeleton-loading');
+                const placeholder = el.querySelector('.skeleton-placeholder');
+                if (placeholder) {
+                    placeholder.remove();
+                }
+            }
+        });
+        
+        this.priceElements.set(symbol, elementData);
+        
+        console.log(`✅ Data-driven setup complete for ${symbol}`);
+        console.log(`🔍 ${symbol} elements:`, {
+            price: !!priceElement,
+            change: !!changeElement,
+            changePct: !!changePercentElement,
+            volume: !!volumeElement,
+            time: !!timeElement
+        });
+    }
+
     processTableRow(row, index) {
         // Look for the title/name element
         const titleElement = row.querySelector('a[title]');
@@ -91,6 +182,12 @@ class MarketDataIntegration {
         }
         
         console.log(`📈 Found ${title} -> ${symbol}`);
+        
+        // Special debug logging for Tesla
+        if (title === 'Tesla') {
+            console.log(`🚗 TESLA DEBUG: Found Tesla row, mapping to TSLA`);
+            console.log(`🚗 TESLA DEBUG: Row element:`, row);
+        }
         
         // Find cells by their CSS custom properties (more reliable than position)
         const priceCell = row.querySelector('td[style*="--cell-positions:last"]');
@@ -187,14 +284,22 @@ class MarketDataIntegration {
         
         try {
             console.log(`🔄 Updating ${symbol}:`, data);
+            
+            // Special debug logging for Tesla
+            if (symbol === 'TSLA') {
+                console.log(`🚗 TESLA UPDATE: Received data for TSLA:`, data);
+                console.log(`🚗 TESLA UPDATE: Element data:`, elementData);
+            }
+            
             // Update price with animation
             const newPrice = parseFloat(data.price || data.current_price);
             const oldPrice = elementData.lastPrice;
+            let formattedPrice = 'N/A'; // Default value for console log
             
             if (newPrice && elementData.priceElement) {
                 // Format price appropriately (2 decimals for most, 4 for forex)
                 const decimals = symbol.includes('USD') && symbol.length === 6 ? 4 : 2;
-                const formattedPrice = this.formatPrice(newPrice, decimals);
+                formattedPrice = this.formatPrice(newPrice, decimals);
                 
                 elementData.priceElement.textContent = formattedPrice;
                 elementData.lastPrice = newPrice;
@@ -305,7 +410,7 @@ class MarketDataIntegration {
                 }
             }
             
-            console.log(`✅ Updated ${symbol}: ${formattedPrice}`);
+            console.log(`✅ Updated ${symbol}: ${formattedPrice || 'N/A'}`);
             
         } catch (error) {
             console.error(`❌ Error updating ${symbol}:`, error);
