@@ -279,6 +279,13 @@ class DynamicTableGenerator {
                     fallbackId: 'leading-stocks-table'
                 },
                 {
+                    category: 'commodities',
+                    title: 'Commodities',
+                    href: 'https://www.investing-market.com/commodities',
+                    selector: 'h3:contains("Commodities")', // Find existing Commodities table
+                    fallbackId: 'commodities-table'
+                },
+                {
                     category: 'cryptocurrencies',
                     title: 'Top Cryptocurrencies', 
                     href: 'https://www.investing-market.com/crypto/currencies',

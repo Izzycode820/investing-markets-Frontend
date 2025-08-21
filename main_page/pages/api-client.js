@@ -282,10 +282,13 @@ class InvestingMarketsAPI {
         const config = window.InvestingMarketsConfig.symbols;
         const allSymbols = [
             ...config.majorIndices,
+            ...config.leadingStocks, // Added missing leading stocks  
             ...config.currencies,
             ...config.commodities,
             ...config.crypto
         ];
+
+        console.log(`📡 Subscribing to ${allSymbols.length} symbols:`, allSymbols);
 
         if (this.websocket?.readyState === WebSocket.OPEN) {
             this.websocket.send(JSON.stringify({
